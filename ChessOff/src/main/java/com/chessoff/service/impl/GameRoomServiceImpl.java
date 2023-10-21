@@ -19,6 +19,12 @@ public class GameRoomServiceImpl implements GameRoomService {
 	private Map<String, GameRoom> openGameRooms = new HashMap<>();
 	private LinkedHashSet<String> waitingGameRoomsNo = new LinkedHashSet<>();
 
+	/**
+	 *
+	 * @param roomNo of the GameRoom you're looking for.
+	 * @return GameRoom - if the room found with the passed ID, the room can only have 1 person assigned to it or also 2
+	 * @throws GameRoomException if no room found with the passed ID
+	 */
 	@Override
 	public GameRoom findGameRoom(String roomNo) {
 		GameRoom room = openGameRooms.get(roomNo);
@@ -66,6 +72,11 @@ public class GameRoomServiceImpl implements GameRoomService {
 		return availableRoom;
 	}
 
+	/**
+	 * A new GameRoom gets created with one player in it and
+	 * @param playerOneIdentifier
+	 * @return newly created GameRoom having one player assigned.
+	 */
 	private GameRoom generateNewGameRoom(String playerOneIdentifier) {
 		GameRoom room = new GameRoom(playerOneIdentifier);
 		String roomNo = room.getRoomNo();

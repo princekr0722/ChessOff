@@ -36,9 +36,19 @@ public class GameRoom {
 	 * @throws GameRoomException when the second player is already set
 	 */
 	public void setPlayerTwoIdentifier(String playerTwoIdentifier) {
+		if (playerOneIdentifier == null) {
+			this.playerOneIdentifier = playerTwoIdentifier;
+
+			if(playerTwoIdentifier != null) {
+				canStart = true;
+			}
+		}
 		if (this.playerTwoIdentifier == null) {
 			this.playerTwoIdentifier = playerTwoIdentifier;
-			canStart = true;
+
+			if(playerOneIdentifier != null) {
+				canStart = true;
+			}
 		} else
 			throw new GameRoomException("Game room is full");
 	}
